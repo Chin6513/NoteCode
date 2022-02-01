@@ -56,4 +56,5 @@ void show_polar(polar dapos)
 	cout<<", angle = "<<dapos.angle * Rad_to_deg;
 	cout<<"degrees\n";
 }
-/*通过函数的返回类型和参数，将其设置为不同的结构体，就可以达到效果*/
+/*通过函数的返回类型和参数，将其设置为不同的结构体，
+ *就可以达到不同类型的结构体之间相互转换的效果*/
