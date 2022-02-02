@@ -190,4 +190,49 @@ return newguy;
 因此返回的引用也指向这些数据。
 另一种方法是用new来分配新的储存空间。并返回指向该内存空间的指针。
 下面是使用引用来完成类似工作的方法：
+const free_throws & clone(free throws & ft)
+{
+	free_throws * pt;
+	*pt = ft;	// copy info
+	return *pt;	// return reference to copy
+}
+第一条语句创建一个无名的 free_throws 结构，并让指针pt 指向该结构，因此*pt就是该结构。
+上述代码似乎会返回该结构，但函数声明表明，该函数实际上将返回这个结构的引用。
+这样，便可以这样使用该函数：
+free_throws & jolly = clone(three);
+这使得jolly成为新结构的引用。这种方法存在一个问题：在不再需要new分配的内存时，应使用delete
+来释放它们。调用clone(）隐藏了对new的调用，这使得以后很容易忘记使用delete 来释放内存。
+
+4.为何将const用于引用返回类型
+如下语句：
+accumulate(dup,five) = four;
+其效果如下：首先将five的数据添加到dup中,再使用four的内容覆盖dup的内容。
+这条语句为何能够通过编译呢？在赋值语句中，左边必须是可修改的左值。
+也就是说，在赋值表达式中，左边的子表达式必须标识一个可修改的内存块。
+在这里，函数返回指向dup的引用，它确实标识的是一个这样的内存块，因此这条语句是合法的。
+
+另一方面，常规（非引用）返回类型是右值——不能通过地址访问的值。
+这种表达式可出现在赋值语句的右边，但不能出现在左边。其他右值包括字面值(如10.0)和表达式(如x+y)。
+显然，获取字面值(如10.0)的地址没有意义，但为何常规函数返回值是右值呢？
+
+这是因为这种返回值位于临时内存单元中，运行到下一条语句时，它们可能不再存在。
+假设您要使用引用返回值，但又不允许执行像给accumulate()赋值这样的操作，只需将返回类型声明为const引用：
+
+const free_throws & accumulate(free_throws & target, const free_throws & source);
+
+现在返回类型为const，是不可修改的左值，因此下面的赋值语句不合法：
+accumulate(dup,five) = four; // not allowed for const reference return
+该程序中的其他函数调用又如何呢？返回类型为const引用后，下面的语句仍合法：
+display (accumulate (team, two)) ;
+这是因为display()的形参也是const free_throws &类型。
+但下面的语句不合法，因此accumulate()的第一个形参不是const:
+
+accumulate(accumulate (team, three), four);
+这影响大吗？就这里而言不大，因为您仍可以这样做：
+accumulate(team, three);
+accumulate(team, four);
+另外，您仍可以在赋值语句右边使用accumulate()。
+通过省略const，可以编写更简短代码，但其含义也更模糊。
+通常，应避免在设计中添加模糊的特性，因为模糊特性增加了犯错的机会。将返回类型声明为const引用，
+可避免您犯糊涂。然而，有时候省略const确实有道理,<<就是一个这样的例子。
 */
