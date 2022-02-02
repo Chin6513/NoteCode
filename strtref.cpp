@@ -111,13 +111,13 @@ void set_pcp(free_throws * pt)
 下一个函数调用如下：
 display(one);
 
-由于display0显示结构的内容，而不修改它，因此这个函数使用了一个const引用参数。
+由于display()显示结构的内容，而不修改它，因此这个函数使用了一个const引用参数。
 就这个函数而言，也可按值传递结构，但与复制原始结构的拷贝相比，使用引用可节省时间和内存。
 
 再下一个函数调用如下：
 
-accumulate (team, one);
-函数accumulateO接收两个结构参数，并将第二个结构的成员attempts和made的数据添加到第一个结构的相应成员中。
+accumulate(team, one);
+函数accumulate()接收两个结构参数，并将第二个结构的成员attempts和made的数据添加到第一个结构的相应成员中。
 只修改了第一个结构，因此第一个参数为引用，而第二个参数为const引用：
 free_throws & accumulate(free_throws & target, const free_throws & source);
 
@@ -137,23 +137,23 @@ free_throws & accumulate(free_throws & target, const free_throws & source)
 接下来，将accumulate()的返回值作为参数传递给了display(),这意味着将team传递给了display()。
 display()的参数为引用，这意味着函数 display()中的ft指向的是team,因此将显示team的内容。
 所以，下述代码：
-display (accumulate (team, two));
+display(accumulate (team, two));
 与下面的代码等效：
 
-accumulate (team, two) ;
+accumulate(team, two) ;
 display(team);
 上述逻辑也适用于如下语句：
-accumulate (accumulate (team, three), four);
+accumulate(accumulate (team, three), four);
 因此，该语句与下面的语句等效：
-accumulate (team, three);
-accumulate (team, four);
+accumulate(team, three);
+accumulate(team, four);
 接下来，程序使用了一条赋值语句：
 dup = accumulate(team, five) ;
 正如您预期的，这条语句将team中的值复制到dup中。
 最后，程序以独特的方式使用了accumulate()：
 accumulate(dup,five) = four;
 这条语句将值赋给函数调用，这是可行的，因为函数的返回值是一个引用。
-如果函数accumulateO按值返回，这条语句将不能通过编译。
+如果函数accumulate()按值返回，这条语句将不能通过编译。
 由于返回的是指向dup的引用，因此上述代码与下面的代码等效：
 accumulate(dup,five); // add five's data to dup
 dup = four;				// overwrite the contents of dup with the contents of four
