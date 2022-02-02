@@ -1,4 +1,4 @@
-//程序清单8.6 strtref.cpp
+﻿//程序清单8.6 strtref.cpp
 //strc ref.cpp -- using structure references
 #include <iostream>
 #include <string>
@@ -99,7 +99,7 @@ set_pc(one);
 函数set_pc()的代码设置成员one.percent。就这里而言，按值传递不可行，
 因此这将导致设置的是one的临时拷贝的成员percent。
 另一种方法是使用指针参数并传递地址，但要复杂些：
-set pcp(&one);// using pointers instead - &one instead of one
+set_pcp(&one);// using pointers instead - &one instead of one
 ……
 void set_pcp(free_throws * pt)
 {
@@ -111,13 +111,13 @@ void set_pcp(free_throws * pt)
 下一个函数调用如下：
 display(one);
 
-由于display()显示结构的内容，而不修改它，因此这个函数使用了一个const引用参数。
+由于display0显示结构的内容，而不修改它，因此这个函数使用了一个const引用参数。
 就这个函数而言，也可按值传递结构，但与复制原始结构的拷贝相比，使用引用可节省时间和内存。
 
 再下一个函数调用如下：
 
 accumulate (team, one);
-函数accumulate()接收两个结构参数，并将第二个结构的成员attempts和made的数据添加到第一个结构的相应成员中。
+函数accumulateO接收两个结构参数，并将第二个结构的成员attempts和made的数据添加到第一个结构的相应成员中。
 只修改了第一个结构，因此第一个参数为引用，而第二个参数为const引用：
 free_throws & accumulate(free_throws & target, const free_throws & source);
 
@@ -132,15 +132,62 @@ return target;
 光看这条语句并不能知道返回的是引用，但函数头和原型指出了这一点：
 free_throws & accumulate(free_throws & target, const free_throws & source)
 
-如果返回类型被声明为free_throws 而不是free_throws &，上述返回语句将返回 target（也就是 team）的拷贝。
+如果返回类型被声明为free_throws 而不是free_throws &,上述返回语句将返回target(也就是 team)的拷贝。
 但返回类型为引用，这意味着返回的是最初传递给accumulate()的team对象。
 接下来，将accumulate()的返回值作为参数传递给了display(),这意味着将team传递给了display()。
-display()的参数为引用，这意味着函数 display()中的ft指向的是 team,因此将显示 team 的内容。所以，下述代码：
+display()的参数为引用，这意味着函数 display()中的ft指向的是team,因此将显示team的内容。
+所以，下述代码：
 display (accumulate (team, two));
 与下面的代码等效：
 
 accumulate (team, two) ;
 display(team);
 上述逻辑也适用于如下语句：
-待续
+accumulate (accumulate (team, three), four);
+因此，该语句与下面的语句等效：
+accumulate (team, three);
+accumulate (team, four);
+接下来，程序使用了一条赋值语句：
+dup = accumulate(team, five) ;
+正如您预期的，这条语句将team中的值复制到dup中。
+最后，程序以独特的方式使用了accumulate()：
+accumulate(dup,five) = four;
+这条语句将值赋给函数调用，这是可行的，因为函数的返回值是一个引用。
+如果函数accumulateO按值返回，这条语句将不能通过编译。
+由于返回的是指向dup的引用，因此上述代码与下面的代码等效：
+accumulate(dup,five); // add five's data to dup
+dup = four;				// overwrite the contents of dup with the contents of four
+其中第二条语句消除了第一条语句所做的工作，因此在原始赋值语句使用accumulate()的方式并不好。
+
+2.为何要返回引用
+下面更深入地讨论返回引用与传统返回机制的不同之处。传统返回机制与按值传递函数参数类似：
+计算关键字returm后面的表达式，并将结果返回给调用函数。
+从概念上说，这个值被复制到一个临时位置,
+而调用程序将使用这个值。请看下面的代码：
+double m = sqrt(16.0);
+cout << sqrt (25.0);
+在第一条语句中，值4.0被复制到一个临时位置，然后被复制给m。
+在第二条语句中，值5.0被复制到一个临时位置，然后被传递给cout
+(这里理论上的描述，实际上，编译器可能合并某些步骤).
+现在来看下面的语句：
+dup = accumulate(team, five);
+如果accumulate()返回一个结构，而不是指向结构的引用，将把整个结构复制到一个临时位置，
+再将这个拷贝复制给dup。但在返回值为引用时，将直接把team复制到dup，其效率更高。
+注意：返回引用的函数实际上是被引用的变量的别名。
+
+3.返回引用时需要注意的问题
+返回引用时最重要的一点是，应避免返回函数终止时不再存在的内存单元引用。
+您应避免编写下面这样的代码：
+const free_throws & clone2(free_throws & ft)
+free_throws newguy; // first step to big error
+newguy = ft;
+// copy info
+// return reference to copy
+return newguy;
+该函数返回一个指向临时变量(newguy)的引用，函数运行完毕后它将不再存在。
+同样，也应避免返回指向临时变量的指针。为避免这种问题，最简单的方法是，
+返回一个作为参数传递给函数的引用。作为参数的引用将指向调用函数使用的数据，
+因此返回的引用也指向这些数据。
+另一种方法是用new来分配新的储存空间。并返回指向该内存空间的指针。
+下面是使用引用来完成类似工作的方法：
 */
