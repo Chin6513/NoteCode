@@ -1,4 +1,4 @@
-//³ÌÐòÇåµ¥8.6 strtref.cpp
+//ç¨‹åºæ¸…å•8.6 strtref.cpp
 //strc ref.cpp -- using structure references
 #include <iostream>
 #include <string>
@@ -71,7 +71,7 @@ free_throws & accumulate(free_throws & target, const free_throws & source)
 	set_pc(target);
 	return target;
 }
-/*ÔËÐÐ½á¹ûÈçÏÂ£º
+/*è¿è¡Œç»“æžœå¦‚ä¸‹ï¼š
 Name:Ifelsa Branch
  Made: 13       Attempts: 14    Percent: 92.8571
 Name:Throwgoods
@@ -91,16 +91,16 @@ Name:Whily Looper
  Made: 5        Attempts: 9     Percent: 55.5556
 */
 /*
-1.³ÌÐòËµÃ÷
-¸Ã³ÌÐòÊ×ÏÈ³õÊ¼»¯ÁË¶à¸ö½á¹¹¶ÔÏó¡£±¾ÊéÇ°ÃæËµ¹ý£¬Èç¹ûÖ¸¶¨µÄ³õÊ¼Öµ±È³ÉÔ±ÉÙ£¬
-ÓàÏÂµÄ³ÉÔ±£¨ÕâÀïÖ»ÓÐpercent£©½«±»ÉèÖÃÎªÁã¡£µÚÒ»¸öº¯Êýµ÷ÓÃÈçÏÂ£º
+1.ç¨‹åºè¯´æ˜Ž
+è¯¥ç¨‹åºé¦–å…ˆåˆå§‹åŒ–äº†å¤šä¸ªç»“æž„å¯¹è±¡ã€‚æœ¬ä¹¦å‰é¢è¯´è¿‡ï¼Œå¦‚æžœæŒ‡å®šçš„åˆå§‹å€¼æ¯”æˆå‘˜å°‘ï¼Œ
+ä½™ä¸‹çš„æˆå‘˜ï¼ˆè¿™é‡Œåªæœ‰percentï¼‰å°†è¢«è®¾ç½®ä¸ºé›¶ã€‚ç¬¬ä¸€ä¸ªå‡½æ•°è°ƒç”¨å¦‚ä¸‹ï¼š
 set_pc(one);
-ÓÉÓÚº¯Êýset_pc()µÄÐÎ²ÎftÎªÒýÓÃ£¬Òò´ËftÖ¸Ïòone,
-º¯Êýset_pc()µÄ´úÂëÉèÖÃ³ÉÔ±one.percent¡£¾ÍÕâÀï¶øÑÔ£¬°´Öµ´«µÝ²»¿ÉÐÐ£¬
-Òò´ËÕâ½«µ¼ÖÂÉèÖÃµÄÊÇoneµÄÁÙÊ±¿½±´µÄ³ÉÔ±percent¡£
-ÁíÒ»ÖÖ·½·¨ÊÇÊ¹ÓÃÖ¸Õë²ÎÊý²¢´«µÝµØÖ·£¬µ«Òª¸´ÔÓÐ©£º
+ç”±äºŽå‡½æ•°set_pc()çš„å½¢å‚ftä¸ºå¼•ç”¨ï¼Œå› æ­¤ftæŒ‡å‘one,
+å‡½æ•°set_pc()çš„ä»£ç è®¾ç½®æˆå‘˜one.percentã€‚å°±è¿™é‡Œè€Œè¨€ï¼ŒæŒ‰å€¼ä¼ é€’ä¸å¯è¡Œï¼Œ
+å› æ­¤è¿™å°†å¯¼è‡´è®¾ç½®çš„æ˜¯oneçš„ä¸´æ—¶æ‹·è´çš„æˆå‘˜percentã€‚
+å¦ä¸€ç§æ–¹æ³•æ˜¯ä½¿ç”¨æŒ‡é’ˆå‚æ•°å¹¶ä¼ é€’åœ°å€ï¼Œä½†è¦å¤æ‚äº›ï¼š
 set pcp(&one);// using pointers instead - &one instead of one
-¡­¡­
+â€¦â€¦
 void set_pcp(free_throws * pt)
 {
 	if (pt->attempts != 0)
@@ -108,39 +108,39 @@ void set_pcp(free_throws * pt)
 	else
 		pt->percent = 0;
 }
-ÏÂÒ»¸öº¯Êýµ÷ÓÃÈçÏÂ£º
+ä¸‹ä¸€ä¸ªå‡½æ•°è°ƒç”¨å¦‚ä¸‹ï¼š
 display(one);
 
-ÓÉÓÚdisplay0ÏÔÊ¾½á¹¹µÄÄÚÈÝ£¬¶ø²»ÐÞ¸ÄËü£¬Òò´ËÕâ¸öº¯ÊýÊ¹ÓÃÁËÒ»¸öconstÒýÓÃ²ÎÊý¡£
-¾ÍÕâ¸öº¯Êý¶øÑÔ£¬Ò²¿É°´Öµ´«µÝ½á¹¹£¬µ«Óë¸´ÖÆÔ­Ê¼½á¹¹µÄ¿½±´Ïà±È£¬Ê¹ÓÃÒýÓÃ¿É½ÚÊ¡Ê±¼äºÍÄÚ´æ¡£
+ç”±äºŽdisplay()æ˜¾ç¤ºç»“æž„çš„å†…å®¹ï¼Œè€Œä¸ä¿®æ”¹å®ƒï¼Œå› æ­¤è¿™ä¸ªå‡½æ•°ä½¿ç”¨äº†ä¸€ä¸ªconstå¼•ç”¨å‚æ•°ã€‚
+å°±è¿™ä¸ªå‡½æ•°è€Œè¨€ï¼Œä¹Ÿå¯æŒ‰å€¼ä¼ é€’ç»“æž„ï¼Œä½†ä¸Žå¤åˆ¶åŽŸå§‹ç»“æž„çš„æ‹·è´ç›¸æ¯”ï¼Œä½¿ç”¨å¼•ç”¨å¯èŠ‚çœæ—¶é—´å’Œå†…å­˜ã€‚
 
-ÔÙÏÂÒ»¸öº¯Êýµ÷ÓÃÈçÏÂ£º
+å†ä¸‹ä¸€ä¸ªå‡½æ•°è°ƒç”¨å¦‚ä¸‹ï¼š
 
 accumulate (team, one);
-º¯ÊýaccumulateO½ÓÊÕÁ½¸ö½á¹¹²ÎÊý£¬²¢½«µÚ¶þ¸ö½á¹¹µÄ³ÉÔ±attemptsºÍmadeµÄÊý¾ÝÌí¼Óµ½µÚÒ»¸ö½á¹¹µÄÏàÓ¦³ÉÔ±ÖÐ¡£
-Ö»ÐÞ¸ÄÁËµÚÒ»¸ö½á¹¹£¬Òò´ËµÚÒ»¸ö²ÎÊýÎªÒýÓÃ£¬¶øµÚ¶þ¸ö²ÎÊýÎªconstÒýÓÃ£º
+å‡½æ•°accumulate()æŽ¥æ”¶ä¸¤ä¸ªç»“æž„å‚æ•°ï¼Œå¹¶å°†ç¬¬äºŒä¸ªç»“æž„çš„æˆå‘˜attemptså’Œmadeçš„æ•°æ®æ·»åŠ åˆ°ç¬¬ä¸€ä¸ªç»“æž„çš„ç›¸åº”æˆå‘˜ä¸­ã€‚
+åªä¿®æ”¹äº†ç¬¬ä¸€ä¸ªç»“æž„ï¼Œå› æ­¤ç¬¬ä¸€ä¸ªå‚æ•°ä¸ºå¼•ç”¨ï¼Œè€Œç¬¬äºŒä¸ªå‚æ•°ä¸ºconstå¼•ç”¨ï¼š
 free_throws & accumulate(free_throws & target, const free_throws & source);
 
-·µ»ØÖµÄØ£¿µ±Ç°ÌÖÂÛµÄº¯Êýµ÷ÓÃÃ»ÓÐÊ¹ÓÃËü£»¾ÍÄ¿Ç°¶øÑÔ£¬Ô­±¾¿ÉÒÔ½«·µ»ØÖµÉùÃ÷Îªvoid£¬µ«Çë¿´ÏÂÊöº¯Êýµ÷ÓÃ£º
+è¿”å›žå€¼å‘¢ï¼Ÿå½“å‰è®¨è®ºçš„å‡½æ•°è°ƒç”¨æ²¡æœ‰ä½¿ç”¨å®ƒï¼›å°±ç›®å‰è€Œè¨€ï¼ŒåŽŸæœ¬å¯ä»¥å°†è¿”å›žå€¼å£°æ˜Žä¸ºvoidï¼Œä½†è¯·çœ‹ä¸‹è¿°å‡½æ•°è°ƒç”¨ï¼š
 display(accumulate(team, two));
 
-ÉÏÊö´úÂëÊÇÊ²Ã´ÒâË¼ÄØ£¿Ê×ÏÈ£¬½«½á¹¹¶ÔÏóteam×÷ÎªµÚÒ»¸ö²ÎÊý´«µÝ¸øÁËaccumulate0¡£
-ÕâÒâÎ¶×ÅÔÚº¯Êýaccumulate(0ÖÐ£¬targetÖ¸ÏòµÄÊÇteam¡£º¯Êýaccumulate0ÐÞ¸Äteam,ÔÙ·µ»ØÖ¸ÏòËüµÄÒýÓÃ¡£
-×¢Òâµ½·µ»ØÓï¾äÈçÏÂ£º
+ä¸Šè¿°ä»£ç æ˜¯ä»€ä¹ˆæ„æ€å‘¢ï¼Ÿé¦–å…ˆï¼Œå°†ç»“æž„å¯¹è±¡teamä½œä¸ºç¬¬ä¸€ä¸ªå‚æ•°ä¼ é€’ç»™äº†accumulate()ã€‚
+è¿™æ„å‘³ç€åœ¨å‡½æ•°accumulate()ä¸­ï¼ŒtargetæŒ‡å‘çš„æ˜¯teamã€‚å‡½æ•°accumulate()ä¿®æ”¹team,å†è¿”å›žæŒ‡å‘å®ƒçš„å¼•ç”¨ã€‚
+æ³¨æ„åˆ°è¿”å›žè¯­å¥å¦‚ä¸‹ï¼š
 return target;
 
-¹â¿´ÕâÌõÓï¾ä²¢²»ÄÜÖªµÀ·µ»ØµÄÊÇÒýÓÃ£¬µ«º¯ÊýÍ·ºÍÔ­ÐÍÖ¸³öÁËÕâÒ»µã£º
+å…‰çœ‹è¿™æ¡è¯­å¥å¹¶ä¸èƒ½çŸ¥é“è¿”å›žçš„æ˜¯å¼•ç”¨ï¼Œä½†å‡½æ•°å¤´å’ŒåŽŸåž‹æŒ‡å‡ºäº†è¿™ä¸€ç‚¹ï¼š
 free_throws & accumulate(free_throws & target, const free_throws & source)
 
-Èç¹û·µ»ØÀàÐÍ±»ÉùÃ÷Îªfree_throws ¶ø²»ÊÇfree_throws &£¬ÉÏÊö·µ»ØÓï¾ä½«·µ»Ø target£¨Ò²¾ÍÊÇ team£©µÄ¿½±´¡£
-µ«·µ»ØÀàÐÍÎªÒýÓÃ£¬ÕâÒâÎ¶×Å·µ»ØµÄÊÇ×î³õ´«µÝ¸øaccumulateOµÄteam¶ÔÏó¡£
-½ÓÏÂÀ´£¬½«accumulate(OµÄ·µ»ØÖµ×÷Îª²ÎÊý´«µÝ¸øÁËdisplay(),ÕâÒâÎ¶×Å½«team´«µÝ¸øÁËdisplay()¡£
-displayOµÄ²ÎÊýÎªÒýÓÃ£¬ÕâÒâÎ¶×Åº¯Êý display()ÖÐµÄftÖ¸ÏòµÄÊÇ team,Òò´Ë½«ÏÔÊ¾ team µÄÄÚÈÝ¡£ËùÒÔ£¬ÏÂÊö´úÂë£º
+å¦‚æžœè¿”å›žç±»åž‹è¢«å£°æ˜Žä¸ºfree_throws è€Œä¸æ˜¯free_throws &ï¼Œä¸Šè¿°è¿”å›žè¯­å¥å°†è¿”å›ž targetï¼ˆä¹Ÿå°±æ˜¯ teamï¼‰çš„æ‹·è´ã€‚
+ä½†è¿”å›žç±»åž‹ä¸ºå¼•ç”¨ï¼Œè¿™æ„å‘³ç€è¿”å›žçš„æ˜¯æœ€åˆä¼ é€’ç»™accumulate()çš„teamå¯¹è±¡ã€‚
+æŽ¥ä¸‹æ¥ï¼Œå°†accumulate()çš„è¿”å›žå€¼ä½œä¸ºå‚æ•°ä¼ é€’ç»™äº†display(),è¿™æ„å‘³ç€å°†teamä¼ é€’ç»™äº†display()ã€‚
+display()çš„å‚æ•°ä¸ºå¼•ç”¨ï¼Œè¿™æ„å‘³ç€å‡½æ•° display()ä¸­çš„ftæŒ‡å‘çš„æ˜¯ team,å› æ­¤å°†æ˜¾ç¤º team çš„å†…å®¹ã€‚æ‰€ä»¥ï¼Œä¸‹è¿°ä»£ç ï¼š
 display (accumulate (team, two));
-ÓëÏÂÃæµÄ´úÂëµÈÐ§£º
+ä¸Žä¸‹é¢çš„ä»£ç ç­‰æ•ˆï¼š
 
 accumulate (team, two) ;
 display(team);
-ÉÏÊöÂß¼­Ò²ÊÊÓÃÓÚÈçÏÂÓï¾ä£º
-´ý¸üÐÂ
+ä¸Šè¿°é€»è¾‘ä¹Ÿé€‚ç”¨äºŽå¦‚ä¸‹è¯­å¥ï¼š
+å¾…ç»­
 */
