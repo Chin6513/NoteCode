@@ -24,16 +24,16 @@ Complex Complex::operator+ (const Complex & c) const
 }
 
 //减法运算符重载
-Complex::Complex & operator- (const & Complex c) const
+Complex Complex::operator - (const Complex & c) const
 {
-	Complex temp;
+    Complex temp;
 	temp.m_Real = m_Real - c.m_Real;
 	temp.m_Imaginary = m_Imaginary - c.m_Imaginary;
 	return temp;
 }
 
 //两个复数乘法重载
-Complex::Complex & operator* (const & Complex c) const
+Complex Complex::operator* (const Complex & c) const
 {
 	Complex temp;
 	temp.m_Real = ((m_Real * c.m_Real) - (m_Imaginary * c.m_Imaginary));
@@ -41,32 +41,33 @@ Complex::Complex & operator* (const & Complex c) const
 	return temp;
 }
 
-//实数和复数乘法运算符重载
-Complex & operator* (const double num, const & Complex c)
-{
-	Complex temp;
-	temp.m_Real = num * c.m_Real;
-	temp.m_Imaginary = num * m_Imaginary;
-	return temp;
-}
-
 //共轭运算符重载
-Complex & operator~ (void, const & Complex c)
+Complex Complex::operator ~ ()
 {
-	c.m_Imaginary = 0 - m_Imaginary;
-	return c;
+    this->m_Imaginary = 0 - m_Imaginary;
+    return *this;
 }
 
-std::ostream & operator<<(std::ostream os, const Complex & c)
+//实数和复数乘法运算符重载
+Complex & operator * (const double num, Complex & c)
 {
-	os << '(' << c.m_Real << ',' << c.m_Imaginary << "i)";
+    c.m_Real = num * c.m_Real;
+    c.m_Imaginary = num * c.m_Imaginary;
+    return c;
+}
+
+
+std::ostream & operator << (std::ostream & os, const Complex & c)
+{
+    os << '(' << c.m_Real << ',' << c.m_Imaginary << "i)";
 	return os;
 }
 
-std::istream & operator>>(std::istream is, Complex & c)
+std::istream & operator>>(std::istream & is, Complex & c)
 {
 	std::cout << "real: ";
 	is >> c.m_Real;
 	std::cout << "imaginary: ";
 	is >> c.m_Imaginary;
+    return is;
 }
