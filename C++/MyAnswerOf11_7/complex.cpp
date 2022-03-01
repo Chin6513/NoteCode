@@ -42,10 +42,11 @@ Complex Complex::operator* (const Complex & c) const
 }
 
 //共轭运算符重载
-Complex Complex::operator ~ ()
+Complex operator ~ (const Complex & c)
 {
-    this->m_Imaginary = 0 - m_Imaginary;
-    return *this;
+    Complex temp = c;
+    temp.m_Imaginary = 0 - c.m_Imaginary;
+    return temp;
 }
 
 //实数和复数乘法运算符重载
@@ -66,8 +67,18 @@ std::ostream & operator << (std::ostream & os, const Complex & c)
 std::istream & operator>>(std::istream & is, Complex & c)
 {
 	std::cout << "real: ";
-	is >> c.m_Real;
-	std::cout << "imaginary: ";
-	is >> c.m_Imaginary;
+    is >> c.m_Real;
+    if(c.m_Real != 'q')
+    {
+        if(is.good()==1)
+        {
+            std::cout << "imaginary: ";
+            is >> c.m_Imaginary;
+        }
+        else
+        {
+            std::cout<<"input error!"<<std::endl;
+        }
+    }
     return is;
 }
